@@ -1,143 +1,193 @@
-# Terax Lobby
 
-The `terax-lobby` project is a comprehensive Minecraft/Bukkit/Spigot plugin designed to serve as a central lobby or hub for a server network. Its primary purpose is to provide an engaging and highly customizable starting experience for players, facilitating navigation to different game modes or server instances, and offering various interactive elements within the lobby world. It integrates deeply with a custom `Kiwizin` core framework, suggesting it's part of a larger ecosystem by 'slickcollections'.
 
-## Features
+Terax Lobby
 
-*   **Interactive Server Selector GUI**: Seamless server switching through a customizable in-game menu (`MenuLobbies`).
-*   **Customizable NPCs**: Create and manage Non-Player Characters (NPCs) with unique skins, hand items, and configurable actions (e.g., `PlayNPC` for server selection, `DeliveryNPC` for item delivery).
-*   **Dynamic Holograms**: Display floating text holograms above NPCs or at specific locations to provide information or visual flair.
-*   **Configurable Player Hotbar**: Define and customize player hotbar items with associated actions (e.g., opening menus, connecting to servers).
-*   **Advanced Player Tagging**: Manage player name tags, prefixes, and suffixes, potentially leveraging Bukkit's team system.
-*   **Extensive Configuration**: Comprehensive options for plugin behavior, customizable messages, and in-game elements through various YAML files.
-*   **Multi-Lobby Support**: Designed to support multiple lobby instances and server entries, ideal for BungeeCord or Velocity server networks.
-*   **Administrative Commands**: Easy in-game management of NPCs, spawn points, and plugin settings (e.g., `/kl build`, `/kl npcplay`, `/kl setspawn`, `/kl give`).
-*   **Kiwizin Core Integration**: Leverages a core framework (`Kiwizin Core`) for consistent functionality and data management across a server network.
-*   **Comprehensive Event Handling**: Manages a wide range of player interactions, chat, inventory, and entity behavior specific to the lobby environment.
+O projeto terax-lobby é um plugin abrangente para Minecraft/Bukkit/Spigot, projetado para servir como um lobby ou hub central para uma rede de servidores. Seu principal objetivo é proporcionar uma experiência inicial envolvente e altamente personalizável para os jogadores, facilitando a navegação entre diferentes modos de jogo ou instâncias de servidor, além de oferecer diversos elementos interativos dentro do mundo do lobby. Ele se integra profundamente com o framework personalizado Kiwizin, sugerindo que faz parte de um ecossistema maior da organização 'slickcollections'.
 
-## Installation
+Funcionalidades
 
-To install and run the Terax Lobby plugin on your Minecraft server, follow these steps:
+Menu Interativo de Seleção de Servidor: Troca de servidor fluida através de um menu no jogo totalmente personalizável (MenuLobbies).
 
-### Prerequisites
+NPCs Personalizáveis: Crie e gerencie Personagens Não Jogadores (NPCs) com skins únicas, itens na mão e ações configuráveis (ex.: PlayNPC para seleção de servidores, DeliveryNPC para entrega de itens).
 
-*   A running Minecraft server (Spigot, Paper, Purpur, or compatible fork) version 1.8.8 or higher (check `build.gradle` for exact compatibility).
-*   Java 8 or newer.
+Hologramas Dinâmicos: Exibe textos flutuantes acima de NPCs ou em locais específicos para fornecer informações ou efeitos visuais.
 
-### Steps
+Barra de Atalhos Personalizável: Defina e personalize os itens da hotbar dos jogadores com ações associadas (ex.: abrir menus, conectar a servidores).
 
-1.  **Download the Plugin**:
-    *   Obtain the latest `TeraxLobby.jar` file from the [releases page](https://github.com/neveshardd/terax-lobby/releases) (or compile it yourself, see "Building from Source").
+Sistema Avançado de Tags de Jogador: Gerencie nome, prefixos e sufixos dos jogadores, possivelmente utilizando o sistema de times do Bukkit.
 
-2.  **Install Required External Plugins (if not bundled)**:
-    *   While many dependencies might be shaded into the main JAR, some core plugins often need to be installed separately for optimal functionality or due to their nature:
-        *   **[ProtocolLib](https://dev.bukkit.org/projects/protocollib)**: Required for advanced packet manipulation, used by the Hologram system.
-        *   **[Citizens2 / NPCLib](https://www.spigotmc.org/resources/citizens.13811/)**: Essential for the custom NPC system.
-        *   **[HolographicDisplays](https://dev.bukkit.org/projects/holographic-displays)** (or similar Hologram library): Potentially used for the Hologram system, though `HologramLibrary` might be an internal abstraction.
-    *   Place these `.jar` files into your server's `plugins/` folder.
+Configuração Extensiva: Diversas opções para comportamento do plugin, mensagens personalizáveis e elementos do jogo via arquivos YAML.
 
-3.  **Place Terax Lobby**:
-    *   Drag and drop the `TeraxLobby.jar` file into your server's `plugins/` folder.
+Suporte a Múltiplos Lobbys: Suporte nativo a múltiplas instâncias de lobby e entradas de servidor, ideal para redes com BungeeCord ou Velocity.
 
-4.  **Restart Your Server**:
-    *   Restart your Minecraft server to load the plugin and generate the default configuration files.
+Comandos Administrativos: Gerenciamento fácil dentro do jogo de NPCs, pontos de spawn e configurações do plugin (ex.: /kl build, /kl npcplay, /kl setspawn, /kl give).
 
-5.  **Configure**:
-    *   After the first startup, configuration files will be generated in `plugins/TeraxLobby/`.
-    *   Edit `config.yml`, `language.yml`, `hotbar.yml`, `entries.yml`, and `lobbies.yml` to customize the plugin to your server's needs.
+Integração com o Kiwizin Core: Utiliza um framework central (Kiwizin Core) para funcionalidade e gerenciamento de dados consistentes na rede.
 
-### Building from Source (for Developers)
+Tratamento Abrangente de Eventos: Gerencia uma ampla variedade de interações de jogadores, chats, inventários e comportamento de entidades específicas do ambiente de lobby.
 
-If you wish to compile the plugin yourself:
 
-1.  **Clone the Repository**:
-    ```bash
-    git clone https://github.com/neveshardd/terax-lobby.git
-    cd terax-lobby
-    ```
-2.  **Build with Gradle**:
-    ```bash
-    ./gradlew clean shadowJar
-    ```
-3.  **Find the JAR**:
-    *   The compiled plugin JAR will be located in the `build/libs/` directory, typically named `TeraxLobby.jar`.
+Instalação
 
-## Usage
+Para instalar e executar o plugin Terax Lobby em seu servidor Minecraft, siga estes passos:
 
-Upon successful installation and server restart, the Terax Lobby plugin will be active.
+Pré-requisitos
 
-### Administrative Commands
+Um servidor Minecraft em execução (Spigot, Paper, Purpur ou fork compatível) na versão 1.8.8 ou superior (verifique o build.gradle para compatibilidade exata).
 
-The primary administrative command is `/kl` (aliased from `/lobby` as defined in `plugin.yml`).
+Java 8 ou mais recente.
 
-*   `/kl help`: Display available commands.
-*   `/kl build [on/off]`: Toggle build mode for administrators in the lobby world.
-*   `/kl npcplay create <name> <server_key>`: Create a new Play NPC for server selection.
-*   `/kl npcplay remove <id>`: Remove an existing Play NPC.
-*   `/kl npcdelivery create <name>`: Create a new Delivery NPC.
-*   `/kl npcdelivery remove <id>`: Remove an existing Delivery NPC.
-*   `/kl setspawn`: Set the main spawn point for the lobby.
-*   `/kl give <player> <item_id>`: Give a player a specific item (likely a custom hotbar item).
-*   `/kl update`: Reload configurations or update plugin components.
 
-### Player Experience
+Etapas
 
-*   **Server Selector**: Players can access the server selector GUI, often via a hotbar item or a specific command, to navigate to different game modes or servers.
-*   **Interactive NPCs**: Players can interact with `PlayNPCs` to join specific servers or with `DeliveryNPCs` for special actions.
-*   **Custom Hotbar**: Players will receive a customized hotbar with items configured by the server, allowing quick access to menus, server warps, and other functionalities.
-*   **Lobby Environment**: The plugin manages various aspects of the lobby world, including preventing unwanted interactions (breaking blocks, PvP, etc.) and handling player joins/quits.
+1. Baixe o Plugin:
 
-### Configuration Files
+Obtenha o arquivo TeraxLobby.jar mais recente na página de lançamentos (ou compile você mesmo, veja "Compilando a Partir do Código Fonte").
 
-*   `config.yml`: Main plugin settings and general configurations.
-*   `language.yml`: Customizable messages for localization and server branding.
-*   `hotbar.yml`: Defines the items present in the player's hotbar and their associated actions.
-*   `entries.yml`: Configures server entries, including holograms, skins, and hand items for NPCs or menu items.
-*   `lobbies.yml`: Defines different lobby instances and their properties.
 
-## Tech Stack
 
-*   **Language**: Java
-*   **Build Tool**: Gradle
-*   **Minecraft API**: Bukkit/Spigot API
-*   **Internal Framework**: Kiwizin (a custom framework by 'slickcollections')
-*   **External Libraries/APIs**:
-    *   ProtocolLib (for advanced packet manipulation, used by HologramAdapter)
-    *   NPCLib (for creating and managing Non-Player Characters)
-    *   HologramLibrary (for managing in-game holograms)
+2. Instale os Plugins Externos Necessários (se não incluídos):
 
-## Project Structure
+Embora muitas dependências possam estar incluídas no JAR principal, alguns plugins essenciais geralmente precisam ser instalados separadamente:
 
-The project is organized into several packages, reflecting its modular design:
+ProtocolLib: Necessário para manipulação avançada de pacotes, usado no sistema de hologramas.
 
-```
+Citizens2 / NPCLib: Essencial para o sistema de NPCs personalizados.
+
+HolographicDisplays (ou biblioteca de hologramas similar): Possivelmente usado para o sistema de hologramas, embora a HologramLibrary possa ser uma abstração interna.
+
+
+Coloque esses arquivos .jar na pasta plugins/ do seu servidor.
+
+
+
+3. Adicione o Terax Lobby:
+
+Arraste e solte o arquivo TeraxLobby.jar na pasta plugins/ do seu servidor.
+
+
+
+4. Reinicie o Servidor:
+
+Reinicie seu servidor Minecraft para carregar o plugin e gerar os arquivos de configuração padrão.
+
+
+
+5. Configure:
+
+Após o primeiro início, os arquivos de configuração serão gerados em plugins/TeraxLobby/.
+
+Edite os arquivos config.yml, language.yml, hotbar.yml, entries.yml e lobbies.yml para personalizar o plugin conforme as necessidades do seu servidor.
+
+
+
+
+Compilando a Partir do Código Fonte (para Desenvolvedores)
+
+Se quiser compilar o plugin manualmente:
+
+1. Clone o Repositório:
+
+git clone https://github.com/neveshardd/terax-lobby.git
+cd terax-lobby
+
+
+2. Compile com Gradle:
+
+./gradlew clean shadowJar
+
+
+3. Encontre o JAR Gerado:
+
+O arquivo JAR compilado estará no diretório build/libs/, geralmente com o nome TeraxLobby.jar.
+
+
+
+
+Uso
+
+Após a instalação e reinício do servidor, o plugin Terax Lobby estará ativo.
+
+Comandos Administrativos
+
+O comando principal para administração é /kl (também pode ser usado como /lobby, conforme definido no plugin.yml).
+
+/kl help: Exibe os comandos disponíveis.
+
+/kl build [on/off]: Ativa ou desativa o modo construção para administradores no mundo do lobby.
+
+/kl npcplay create <nome> <chave_servidor>: Cria um novo NPC do tipo "Play" para seleção de servidor.
+
+/kl npcplay remove <id>: Remove um NPC do tipo "Play" existente.
+
+/kl npcdelivery create <nome>: Cria um novo NPC do tipo "Delivery".
+
+/kl npcdelivery remove <id>: Remove um NPC do tipo "Delivery" existente.
+
+/kl setspawn: Define o ponto de spawn principal do lobby.
+
+/kl give <jogador> <id_item>: Dá um item específico a um jogador (normalmente um item personalizado da hotbar).
+
+/kl update: Recarrega as configurações ou atualiza componentes do plugin.
+
+
+Experiência do Jogador
+
+Seletor de Servidor: Os jogadores podem acessar o seletor de servidor (geralmente via item da hotbar ou comando específico) para navegar entre modos de jogo.
+
+NPCs Interativos: Jogadores podem interagir com PlayNPCs para entrar em servidores específicos ou com DeliveryNPCs para ações especiais.
+
+Hotbar Personalizada: Os jogadores recebem uma hotbar personalizada com itens configurados pelo servidor, oferecendo acesso rápido a menus, warps, entre outros.
+
+Ambiente do Lobby: O plugin gerencia aspectos do mundo do lobby, como bloqueio de interações indesejadas (quebrar blocos, PvP etc.) e tratamento de entradas/saídas de jogadores.
+
+
+Arquivos de Configuração
+
+config.yml: Configurações principais e gerais do plugin.
+
+language.yml: Mensagens personalizáveis para localização e identidade visual do servidor.
+
+hotbar.yml: Define os itens da hotbar dos jogadores e suas ações.
+
+entries.yml: Configura as entradas de servidor, incluindo hologramas, skins e itens na mão para NPCs ou menus.
+
+lobbies.yml: Define diferentes instâncias de lobby e suas propriedades.
+
+
+Stack Tecnológico
+
+Linguagem: Java
+
+Ferramenta de Build: Gradle
+
+API do Minecraft: Bukkit/Spigot API
+
+Framework Interno: Kiwizin (framework personalizado da 'slickcollections')
+
+Bibliotecas/APIs Externas:
+
+ProtocolLib (manipulação avançada de pacotes, usada no HologramAdapter)
+
+NPCLib (criação e gerenciamento de NPCs)
+
+HologramLibrary (gerenciamento de hologramas no jogo)
+
+
+
+Estrutura do Projeto
+
+O projeto está organizado em diversos pacotes, refletindo um design modular:
+
 terax-lobby/
-├── gradle/                  # Gradle wrapper files
+├── gradle/                  # Arquivos do wrapper do Gradle
 ├── src/
 │   └── main/
 │       ├── java/
 │       │   └── dev/slickcollections/kiwizin/lobby/
-│       │       ├── cmd/             # Custom command registration and subcommands (e.g., /kl build, /kl npcplay)
-│       │       ├── hook/            # Integrations with external systems (ProtocolLib, Kiwizin Core, Hotbar)
-│       │       ├── listeners/       # Event handlers for player, entity, and server events
-│       │       ├── lobby/           # Core lobby features: NPCs (PlayNPC, DeliveryNPC), ServerEntry, Lobby management, NPC traits
-│       │       ├── menus/           # Interactive GUI menus (e.g., MenuLobbies for server selection)
-│       │       ├── utils/tagger/    # Utilities for player name tagging, prefixes, and suffixes
-│       │       ├── Language.java    # Manages plugin messages and localization
-│       │       └── Main.java        # Primary plugin entry point for Bukkit/Spigot
-│       └── resources/
-│           ├── config.yml           # Main plugin settings
-│           ├── entries.yml          # Server entry configurations
-│           ├── hotbar.yml           # Player hotbar item definitions
-│           ├── lobbies.yml          # Lobby instance configurations
-│           └── plugin.yml           # Plugin metadata (name, version, main class, commands)
-└── build.gradle             # Gradle build script
-```
+│       │       ├── cmd/             # Registro de comandos personalizados e subcomandos (ex.: /kl build, /kl npcplay)
+│       │       ├── hook/            # Integrações com sistemas externos (ProtocolLib, Kiwizin Core, Hotbar)
+│       │       ├── listeners/       # Manipuladores de eventos de jogador, entidade e servidor
+│       │       ├── lobby/           # Funcionalidades centrais do lobby: NPCs (PlayNPC, DeliveryNPC), entradas de servidor, gerenciamento de lobby
+│       │       ├── menus/           # Menus GUI interativos (ex.:
 
-## Contributing
-
-Contributions are welcome! If you have suggestions, bug reports, or want to contribute code, please feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/neveshardd/terax-lobby).
-
-## License
-
-This project is likely distributed under an open-source license, though a specific license file was not found in the provided analysis. Please check the repository for the most up-to-date licensing information.
