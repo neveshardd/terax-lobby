@@ -1,0 +1,6 @@
+author: Kiwizin
+name: kLobby
+version: 1.0
+depend: [kCore]
+
+main: dev.slickcollections.kiwizin.lobby.Main
